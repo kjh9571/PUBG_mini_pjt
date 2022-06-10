@@ -1,4 +1,5 @@
 #Add ignore files
 *.csv
 *.ipynb
+*.pyc
 
