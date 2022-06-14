@@ -1,7 +1,12 @@
 import pandas as pd
 
-base_path = 'data/raw/'
+def load_train(base_path):
+    base_path = base_path
+    df_train = pd.read_csv(base_path + 'train_V2.csv')
+    return df_train
 
-df_train = pd.read_csv('train_V2.csv')
-df_test = pd.read_csv('test_V2.csv')
-submission = pd.read_csv('sample_submission_V2.csv')
+def load_test(base_path):
+    base_path = base_path
+    df_test = pd.read_csv(base_path + 'test_V2.csv')
+    return df_test    
+    

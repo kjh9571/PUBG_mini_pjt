@@ -1,9 +1,5 @@
-from load_data import df_train
+from src.load_data import load_train
+from src.load_data import load_test
 
-train = df_train
-
-# 결측치 확인
-print(train[train.isnull().any(axis=1)])
-
-# 결측치 제거
-# df_train.dropna(axis=1)
+df_train = load_train('data/raw/')
+df_test = load_test('data/raw/')
