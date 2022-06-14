@@ -1,5 +1,7 @@
-#Add ignore files
+# Add ignore files
 *.csv
 *.ipynb
 *.pyc
+*.DS_store
+
 
