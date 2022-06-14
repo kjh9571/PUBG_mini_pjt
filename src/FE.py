@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 def matchType_classify(df):
     def classify(x):
@@ -19,5 +20,12 @@ def matchType_encoding(df):
     df_OHE = pd.get_dummies(df, columns=['matchType'])
     return df_OHE
 
+def scaling(df, scaler):
+    scaler = scaler
+    df_scaled = scaler.fit_transform(df)
+    df.loc[:,:] = df_scaled[:,:]
+    return df
+
 def average_speed(df):
-    return 0
+    df['average_speed'] = (df.rideDistance + df.swimDistance + df.walkDistance)/df.matchDuration
+    return df['average_speed']

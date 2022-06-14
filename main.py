@@ -7,10 +7,11 @@ from sklearn.linear_model import Ridge              # 3. Ridge
 from xgboost.sklearn import XGBRegressor            # 4. XGBoost
 from lightgbm.sklearn import LGBMRegressor          # 5. LightGBM
 from sklearn.metrics import mean_absolute_error
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 from src.load_data import load_data
 from src.preprocess import feature_selection, rm_MissingValue
-from src.FE import matchType_classify, matchType_encoding
+from src.FE import matchType_classify, matchType_encoding, scaling, average_speed
 from src.model import training
  
 
@@ -30,8 +31,10 @@ train_prep = feature_selection(train_prep)
 train_FE = matchType_encoding(train_prep)
 
 ## Create new feature
+train_FE['average_speed'] = average_speed(df_train)
 
-## Normaliazation(scaling)
+## Normalization(scaling)
+train_FE = scaling(train_FE, MinMaxScaler())
 
 # 3. Train
 X = train_FE.drop(columns='winPlacePerc')
@@ -46,7 +49,7 @@ print("1. Linear Regression : %.4f" % mae1)
 print("2. Lasso             : %.4f" % mae2)
 print("3. Ridge             : %.4f" % mae3)
 print("4. XGBRegressor      : %.4f" % mae4)
-print("5. LGBMRegressor        : %.4f" % mae5)
+print("5. LGBMRegressor     : %.4f" % mae5)
 
 # 4. Test
 
