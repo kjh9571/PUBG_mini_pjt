@@ -1,5 +1,14 @@
-from src.load_data import load_train
-from src.load_data import load_test
+def rm_MissingValue(df):
+    new_df = df.dropna(axis=0).copy()
+    return new_df
 
-df_train = load_train('data/raw/')
-df_test = load_test('data/raw/')
+def feature_selection(df):
+    new_df = df.drop(columns=['Id','groupId','matchId','killPlace','killPoints',\
+        'matchDuration','maxPlace','numGroups','rankPoints','teamKills',\
+            'winPoints']).copy()
+    return new_df
+
+    
+            
+        
+
